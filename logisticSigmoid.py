@@ -1,6 +1,8 @@
 import numpy as np
 import math
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+from ploty import plot3D
 
 a = np.array([2, 5])
 
@@ -31,9 +33,17 @@ def getSigmoid(v, b, x):
     return result**(-1)
 
 plotFunc(x_grid, getSigmoid(1, 0, x_grid))
+#plotFunc(x_grid, getSigmoid(-1, 0, x_grid))
+#plotFunc(x_grid, getSigmoid(-10, 0, x_grid))    #v changes the bandwidth
+#plotFunc(x_grid, getSigmoid(-1, 5, x_grid)) #b changes the center
 
-plotFunc(x_grid, getSigmoid(-1, 0, x_grid))
-
-plotFunc(x_grid, getSigmoid(-10, 0, x_grid))    #v changes the bandwidth
-
-plotFunc(x_grid, getSigmoid(-1, 5, x_grid)) #b changes the center
+xLen = len(x_grid)
+X, Y = np.meshgrid(x_grid, x_grid)
+temp = -(X + 2*Y + 5)
+Z = (1 + np.exp(temp))**(-1)
+print Z
+plt.clf()
+fig = plt.figure()
+ax = fig.gca(projection='3d')
+ax.plot_surface(X,Y,Z)
+plt.show()
