@@ -1,5 +1,11 @@
 import matplotlib.pyplot as plt
 
+def plotNsave(x, y, filepath):
+    plt.figure()
+    plt.plot(x, y, 'b-')
+    plt.savefig(filepath)
+    plt.show()
+
 def plotFunc(x, y):
     startPlot(x, y)
     plt.show()
